@@ -6,14 +6,11 @@ from .models import *
 from .serializers import *
 
 
-
-
 class BetModelViewSet(viewsets.ModelViewSet):
     """
         API endpoint que permite ver, crear, actualizar o eliminar apuestas.
-
-        :param models.Bet ViewSet.ModelViewSet
-        :returns serializer_class BetSerializer
+        :param request.data
+        :return BetSerializer
     """
     queryset = Bet.objects.all()
     serializer_class = BetSerializer
@@ -22,8 +19,8 @@ class BetModelViewSet(viewsets.ModelViewSet):
 class CategoryModelViewSet(viewsets.ModelViewSet):
     """
         API endpoint que permite ver, crear, actualizar o eliminar una categoria.
-        :param models.Category ViewSet.ModelViewSet
-        :returns serializer_class CategorySerializer
+        :param request.data
+        :return CategorySerializer
     """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
@@ -32,8 +29,8 @@ class CategoryModelViewSet(viewsets.ModelViewSet):
 class RaffleModelViewSet(viewsets.ModelViewSet):
     """
         API endpoint que permite ver, crear, actualizar o eliminar Rifas .
-        :param models.Raffle ViewSet.ModelViewSet
-        :returns serializer_class RaffleSerializer
+        :param BetSerializer
+        :return RaffleSerializer
     """
     queryset = Raffle.objects.all()
     serializer_class = RaffleSerializer

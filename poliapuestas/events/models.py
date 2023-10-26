@@ -17,7 +17,7 @@ class Category(models.Model):
 
 
 class Bet(models.Model):
-    """Model apuesta"""
+    """Model bet"""
     title = models.CharField(max_length=150, blank=False, null=False, verbose_name='Nombre Apuestas')
     date_start = models.DateTimeField(verbose_name='Fecha Inicio')
     date_end = models.DateTimeField(verbose_name='Fecha Fin')
@@ -25,6 +25,7 @@ class Bet(models.Model):
     winner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Ganador')
     result = models.CharField(max_length=150, blank=False, null=False, verbose_name='Resultado')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Categoría')
+    participants = models.ManyToManyField(User, blank=True, verbose_name='Participantes')
     price_min = models.PositiveBigIntegerField(blank=False, null=False, verbose_name='Precio Minimo')
     price_max = models.PositiveBigIntegerField(blank=False, null=False, verbose_name='Precio Maximo')
     created = models.DateTimeField(auto_now_add=True)
@@ -39,12 +40,13 @@ class Bet(models.Model):
 
 
 class Raffle(models.Model):
-    """Model Rifa"""
+    """Model raffle"""
     title = models.CharField(max_length=150, blank=False, null=False, verbose_name='Nombre Apuestas')
     date_start = models.DateTimeField(verbose_name='Fecha Inicio')
     date_end = models.DateTimeField(verbose_name='Fecha Fin')
     state = models.CharField(max_length=1, blank=False, null=False, verbose_name='Estado')
     first_winner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Primer Ganador')
+    participants = models.ManyToManyField(User, blank=True, verbose_name='Participantes')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Categoría')
     price = models.PositiveBigIntegerField(blank=False, null=False, verbose_name='Precio')
     created = models.DateTimeField(auto_now_add=True)
