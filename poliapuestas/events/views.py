@@ -29,8 +29,11 @@ class CategoryModelViewSet(viewsets.ModelViewSet):
 class RaffleModelViewSet(viewsets.ModelViewSet):
     """
         API endpoint que permite ver, crear, actualizar o eliminar Rifas .
-        :param BetSerializer
+        :param request.data
         :return RaffleSerializer
     """
     queryset = Raffle.objects.all()
     serializer_class = RaffleSerializer
+
+
+
